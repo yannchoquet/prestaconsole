@@ -1,5 +1,5 @@
 # prestaconsole
-CLI tool to generate code and interact with PrestaShop
+**A work in progress** CLI tool to generate code and interact with PrestaShop
 
 ## Install with composer
 1. [Install Composer globally.](https://getcomposer.org/download/)
