@@ -5,7 +5,7 @@
     "type": "Project",
     "version" : "1.0.0-dev",
     "license": "GPL-3.0+",
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "prefer-stable": true,
     "require": {
         "symfony/console": "^3.1",
