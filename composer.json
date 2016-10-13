@@ -1,5 +1,5 @@
 {
-    "name": "prestashop/console",
+    "name": "efipeek/prestaconsole",
     "description": "CLI tool to generate code and interact with PreaShop",
     "require": {
         "symfony/console": "^3.1",
