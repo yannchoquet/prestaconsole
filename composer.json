@@ -8,7 +8,14 @@
     "authors": [
         {
             "name": "Yann Choquet",
-            "email": "yann.choquet@efipeek.com"
+            "homepage": "http://www.developpeur-lille.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Efipeek",
+            "homepage": "http://www.efipeek.com",
+            "email": "contact@efipeek.com",
+            "role": "Web Agency"
         }
     ],
 	"bin": ["prestashop"],
