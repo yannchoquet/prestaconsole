@@ -1,0 +1,4 @@
+tests/phpunit.xml
+vendor
+# IDE config
+.idea/

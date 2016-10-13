@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+include __DIR__.'/includes/init.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Finder\Finder;
+use PrestaConsole\Commands;
+
+$application = new Application();
+$output = new ConsoleOutput();
+
+$test = new PrestaConsole\Commands\CacheCommand();
+
+if (!is_dir($dir = __DIR__ . '/src/Commands')) {
+    return;
+}
+
+if (!class_exists('Symfony\Component\Finder\Finder')) {
+    throw new \RuntimeException('You need the symfony/finder component to register bundle commands.');
+}
+
+$finder = new Finder();
+$finder->files()->name('*Command.php')->in($dir);
+foreach ($finder as $file) {
+    $className = 'PrestaConsole\\Commands\\'.$file->getBasename('.php');
+
+    $r = new \ReflectionClass($className);
+    if ($r->isSubclassOf('Symfony\\Component\\Console\\Command\\Command') && !$r->isAbstract() && !$r->getConstructor()->getNumberOfRequiredParameters()) {
+        $application->add($r->newInstance());
+    }
+}
+
+$application->run();
