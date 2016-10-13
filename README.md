@@ -3,6 +3,6 @@
 
 ## Install with composer
 1. [Install Composer globally.](https://getcomposer.org/download/)
-2. Install Prestaconsole : `composer global require efipeek/prestaconsole`.
+2. Install Prestaconsole : `composer global require efipeek/prestaconsole:@stable`.
 3. Move to your PrestaShop root folder
 3. Verify that Prestaconsole works: `prestashop`
