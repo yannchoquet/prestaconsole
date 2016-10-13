@@ -1,9 +1,11 @@
 <?php
-namespace PrestaConsole\Commands;
+namespace PrestaConsole\Commands\Cache;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
+
 
 class CacheCommand extends Command
 {
@@ -18,8 +20,12 @@ class CacheCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $io = new SymfonyStyle($input, $output);
+
         \Tools::clearSmartyCache();
         \Cache::getInstance()->flush();
         \Media::clearCache();
+
+        $io->success('Cache cleared!');
     }
 }
