@@ -1,6 +1,9 @@
 {
     "name": "efipeek/prestaconsole",
     "description": "CLI tool to generate code and interact with PreaShop",
+    "keywords": ["PrestaShop", "Console", "Development", "Symfony"],
+    "type": "Project",
+    "version" : "1.0.0-dev",
     "license": "GPL-3.0+",
     "minimum-stability": "dev",
     "prefer-stable": true,
