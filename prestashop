@@ -12,8 +12,6 @@ use PrestaConsole\Commands;
 $application = new Application();
 $output = new ConsoleOutput();
 
-$test = new PrestaConsole\Commands\CacheCommand();
-
 if (!is_dir($dir = __DIR__ . '/src/Commands')) {
     return;
 }
