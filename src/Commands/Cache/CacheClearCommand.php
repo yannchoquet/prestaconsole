@@ -1,14 +1,16 @@
 <?php
 namespace PrestaConsole\Commands\Cache;
 
+use PrestaConsole\Helper\ConsoleHelper;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
 
-class CacheCommand extends Command
+class CacheClearCommand extends Command
 {
+    private $consoleHelper;
+
     protected function configure()
     {
         $this
@@ -18,14 +20,17 @@ class CacheCommand extends Command
         ;
     }
 
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        $this->consoleHelper  = new ConsoleHelper($input, $output);
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = new SymfonyStyle($input, $output);
-
         \Tools::clearSmartyCache();
         \Cache::getInstance()->flush();
         \Media::clearCache();
 
-        $io->success('Cache cleared!');
+        $this->consoleHelper->success('Cache cleared!');
     }
 }

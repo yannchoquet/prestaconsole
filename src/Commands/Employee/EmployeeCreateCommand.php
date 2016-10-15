@@ -9,7 +9,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
-use Symfony\Component\Console\Style\SymfonyStyle;
 use PrestaConsole\Helper\ConsoleHelper;
 
 
@@ -41,14 +40,12 @@ class EmployeeCreateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
-        $this->createEmployee($input);
-        $this->consoleHelper->success('Employee Created!');
+        if($this->createEmployee($input))
+            $this->consoleHelper->success('Employee Created!');
     }
 
     protected function createEmployee(InputInterface $input)
     {
-
         $employee = new \Employee();
         $employee->firstname = $input->getOption('firstname');
         $employee->lastname = $input->getOption('lastname');
@@ -57,7 +54,7 @@ class EmployeeCreateCommand extends Command
         $employee->id_lang = $input->getOption('id_lang');
         $employee->id_profile = $input->getOption('id_profile');
         $employee->default_tab = 1;
-        $employee->save();
+        return $employee->save();
     }
     protected function interact(InputInterface $input, OutputInterface $output)
     {
@@ -109,7 +106,6 @@ class EmployeeCreateCommand extends Command
 
         $id_profile = array_search ( $response , $profiles);
         $input->setOption('id_profile', $id_profile);
-
 
         /*
          * Firstname option
@@ -211,5 +207,4 @@ class EmployeeCreateCommand extends Command
                 exit;
         }
     }
-
 }
