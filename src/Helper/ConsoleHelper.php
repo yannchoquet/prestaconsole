@@ -31,6 +31,11 @@ class ConsoleHelper extends Helper
         $this->io->success($text);
     }
 
+    public function note($text)
+    {
+        $this->io->note($text);
+    }
+
     public function error($text)
     {
         $this->io->error($text);
