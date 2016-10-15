@@ -56,6 +56,7 @@ class EmployeeCreateCommand extends Command
         $employee->passwd = $input->getOption('password');
         $employee->id_lang = $input->getOption('id_lang');
         $employee->id_profile = $input->getOption('id_profile');
+        $employee->default_tab = 1;
         $employee->save();
     }
     protected function interact(InputInterface $input, OutputInterface $output)
