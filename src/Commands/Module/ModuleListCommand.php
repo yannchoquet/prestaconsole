@@ -18,7 +18,7 @@ class ModuleListCommand extends Command
             ->setName('module:list')
             ->setDescription('Show all Modules')
             ->setHelp("")
-            ->addArgument('args', InputArgument::IS_ARRAY, 'Who do you want to greet?')
+            ->addArgument('filter', InputArgument::IS_ARRAY, 'List of filtered argument : active, unactive, installed, uninstalled')
         ;
     }
 
@@ -31,19 +31,19 @@ class ModuleListCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $modules = \Module::getModulesOnDisk();
-        $args = $input->getArgument('args');
+        $filters = $input->getArgument('filter');
         $modules_list = array();
 
-        $valid_args = array('active', 'unactive', 'installed', 'uninstalled');
-        foreach($args as $arg){
-            if(!in_array($arg, $valid_args)){
-                $this->consoleHelper->error($arg.' is not a valid argument. Use active, unactive, installed, uninstalled');
+        $valid_filters = array('active', 'unactive', 'installed', 'uninstalled');
+        foreach($filters as $filter){
+            if(!in_array($filter, $valid_filters)){
+                $this->consoleHelper->error($filter.' is not a valid argument. Use active, unactive, installed, uninstalled');
             }
         }
         foreach($modules as $k => $module){
             $active_statut = $module->active?'active':'unactive';
             $installed_statut =  $module->installed?'installed':'uninstalled';
-            if(!$args || (in_array($active_statut, $args) || in_array($installed_statut, $args))){
+            if(!$filters || (in_array($active_statut, $filters) || in_array($installed_statut, $filters))){
                 $modules_list[$k]['name'] = $module->name;
                 $modules_list[$k]['display_name'] = $module->displayName;
                 $modules_list[$k]['version'] = $module->version;
